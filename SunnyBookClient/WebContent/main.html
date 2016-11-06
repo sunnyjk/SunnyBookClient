@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Sunny Book Site</title>
+
+    <!-- jQuery CDN (Bootstrap보다 먼저 위치해야 한다.) -->
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Theme CSS -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+    <link href="css/clean-blog.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="js/book.js"></script>
+
+</head>
+
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="main.html">도서 관리 프로젝트</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a id="goJoin" data-target="#joinmodal" data-toggle="modal" href="#">Join</a>
+                </li>
+                <li>
+                    <a id="goLogin" data-target="#loginmodal" data-toggle="modal" href="#">Login</a>
+                </li>
+                <li>
+                    <a id="goAddBook" href="#">Add</a>
+                </li>
+                <li>
+                    <a id="goReview" href="#reviewPageH2">Book Review</a>
+                </li>
+                <li>
+                    <a href="share.html">Share Books  <span class="badge"></span></a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('img/home2.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>Search & Share</h1>
+                    <hr class="small">
+                    <span class="subheading">A Clean Book System by Sunny</span>
+                    <br>
+                    <input id="keyword" type="text" class="form-control" placeholder="Search..."
+                           onkeyup="searchBook()" style="width:500px; margin: auto auto;">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="myContent">
+            <div class="post-preview">
+                <a>
+                    <h2 class="post-title">
+                        Failure is not an option
+                    </h2>
+                    <h3 class="post-subtitle">
+                        Many say exploration is part of our destiny, but it’s actually our duty to future generations.
+                    </h3>
+                </a>
+            </div>
+
+            <!-- Add Book DIV -->
+            <div class="post-preview">
+                <div id="addBookDiv" class="post-preview">
+                    <h2 style="margin-top: 30px;" class="post-title">Add Book Page</h2><hr>
+                    <h5 style="color: #c9302c">*는 필수 입력 항목입니다.</h5>
+                    <div class="table-responsive">
+                        <table class="table table-striped myTable">
+                            <tbody>
+                            <tr>
+                                <th><h5 style="color: #c9302c">ISBN*</h5></th>
+                                <td><input id="newIsbn" type="text"></td>
+                            </tr>
+                            <tr>
+                                <th><h5 style="color: #c9302c">TITLE*</h5></th>
+                                <td><input id="newTitle" type="text"></td>
+                            </tr>
+                            <tr>
+                                <th>DATE</th>
+                                <td><input id="newDate" type="text"></td>
+                            </tr>
+                            <tr>
+                                <th>PAGE</th>
+                                <td><input id="newPage" type="text"></td>
+                            </tr>
+                            <tr>
+                                <th><h5 style="color: #c9302c">PRICE*</h5></th>
+                                <td><input id="newPrice" type="text"></td>
+                            </tr>
+                            <tr>
+                                <th><h5 style="color: #c9302c">AUTHOR*</h5></th>
+                                <td><input id="newAuthor" type="text"></td>
+                            </tr>
+                            <tr>
+                                <th>TRANSLATOR</th>
+                                <td><input id="newTranslator" type= "text"></td>
+                            </tr>
+                            <tr>
+                                <th>SUPPLEMENT</th>
+                                <td><input id="newSupp" type="text"></td>
+                            </tr>
+                            <tr>
+                                <th>PUBLISHER</th>
+                                <td><input id="newPublisher" type="text"></td>
+                            </tr>
+                            <tr>
+                                <th>IMG URL</th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div id="bookImgDiv" style="height:400px;"
+                                         ondragenter="return false"
+                                         ondragover="return false"
+                                         ondrop="dDrop()">
+                                        <h5>이미지를 끌어붙여주세요!</h5>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <button id="addBookCancelBtn" class="btn" style="margin-right: 20px;">CANCEL</button>
+                                    <button id="addBookBtn" class="btn btn-danger">ADD</button>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+
+            <!-- Search Book Result DIV -->
+            <div id="bookListDiv" class="post-preview">
+                <a href="#">
+                    <h2 class="post-title">Book List</h2>
+                </a>
+                <p class="post-meta todayP"></p>
+                <h5 id="bookFindResult"></h5>
+                <hr>
+                <div class="table-responsive">
+                    <table class="table table-striped myTable">
+                        <thead>
+                        <tr>
+                            <th>Cover</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th><a href="#" onclick="mySort()">Price</a></th>
+                            <th>Delete</th>
+                            <th>Update</th>
+                            <th>Review</th>
+                            <th>Share</th>
+                        </tr>
+                        </thead>
+                        <tbody id="bookTable">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Review DIV-->
+            <div id="reviewDiv" class="post-preview">
+                <hr>
+                <a href="post.html">
+                    <h2 class="post-title">Book Review</h2>
+                    <h3 class="post-subtitle">
+                        Many say exploration is part of our destiny, but it’s actually our duty to future generations.
+                    </h3>
+                </a>
+                <div id="space1"></div>
+                <input id="reviewSearchKey" type="text" class="form-control" placeholder="Keyword Search..."
+                       onkeyup="searchReview()" style="width:500px; margin: auto auto;">
+                <br>
+                <p class="post-meta todayP"></p>
+                <h5 id="reviewFindResult"></h5>
+                <hr>
+
+                <div class="post-preview">
+                    <div class="table-responsive">
+                        <table class="table table-striped myTable">
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Comments</th>
+                                <th>ID</th>
+                                <th>Date</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody id="reviewTable">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <hr>
+            </div>
+
+            <!-- Pager -->
+            <ul class="pager">
+                <li class="next">
+                    <a href="#">Older Posts &rarr;</a>
+                </li>
+            </ul>
+
+            <!-- Modal -->
+            <div class="post-preview">
+                <div id="joinmodal" class="modal fade" >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- header -->
+                            <div class="modal-header">
+                                <!-- 닫기(x) 버튼 -->
+                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                <!-- header title -->
+                                <h2 class="modal-title">Join Page</h2>
+                                <h5 style="color: #c9302c">*는 필수 입력 항목입니다.</h5>
+                            </div>
+                            <!-- body -->
+                            <div class="modal-body">
+                                <div class="joinFormDiv">
+                                    <h5 style="color: #c9302c">ID*</h5>
+                                    <input id="joinId" type="text" />
+                                    <button id="idCheckBtn" type="button" class="btn btn-default" aria-label="Left Align">
+                                        <i class="glyphicon glyphicon-ok" aria-hidden="true"></i>
+                                    </button>
+                                    <br>
+                                    <h5 style="color: #c9302c">USER PASSWORD*</h5>
+                                    <input id="joinPw" type="password" /><br>
+                                    <h5 style="color: #c9302c">USER PASSWORD CHECK*</h5>
+                                    <input id="joinPw2" type="password" /><br>
+                                    <h5>USER NAME</h5>
+                                    <input id="joinName" type="text" />
+                                </div>
+                            </div>
+                            <!-- Footer -->
+                            <div class="modal-footer">
+                                <button id="dbJoinBtn" class="btn btn-danger" data-dismiss="modal">Join</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="post-preview">
+                <div id="loginmodal" class="modal fade" >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- header -->
+                            <div class="modal-header">
+                                <!-- 닫기(x) 버튼 -->
+                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                <!-- header title -->
+                                <h2 class="modal-title">Login</h2>
+                            </div>
+                            <!-- body -->
+                            <div class="modal-body">
+                                <div class="joinFormDiv">
+                                    <h5>USER ID</h5>
+                                    <input id="loginid" type="text" /><br>
+                                    <h5>USER PASSWORD</h5>
+                                    <input id="loginpw" type="password" /><br>
+                                </div>
+                            </div>
+                            <!-- Footer -->
+                            <div class="modal-footer">
+                                <button id="loginCancel" class="btn" data-dismiss="modal">Cancel</button>
+                                <button id="loginBtn" class="btn btn-danger" data-dismiss="modal">Login</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="post-preview">
+                <div id="reviewmodal" class="modal fade" >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- header -->
+                            <div class="modal-header">
+                                <!-- 닫기(x) 버튼 -->
+                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                <!-- header title -->
+                                <h2 class="modal-title">Book Review</h2>
+                            </div>
+                            <!-- body -->
+                            <div class="modal-body">
+                                <div class="reviewContents">
+                                    <input id="reviewIsbn" type="hidden"/>
+                                    <h5 id="reviewTitle"></h5><hr>
+                                    <h5>Comments:</h5>
+                                    <textarea id="reviewT">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <!-- Footer -->
+                            <div class="modal-footer">
+                                <button id="goReviewPage" class="btn" data-dismiss="modal">All Comments</button>
+                                <button id="reviewBtn" class="btn btn-danger" data-dismiss="modal">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                        </a>
+                    </li>
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; Your Website 2016</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+
+</html>
